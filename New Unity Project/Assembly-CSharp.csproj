@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\main.cs" />
+     <Compile Include="Assets\net\Header\Header.cs" />
      <Compile Include="Assets\net\Proto.cs" />
      <Compile Include="Assets\net\Socket\ClientNet.cs" />
   </ItemGroup>
