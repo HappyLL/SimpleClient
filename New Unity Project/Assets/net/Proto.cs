@@ -39,13 +39,11 @@ public class Proto{
                     case 'I':
                         tmp = BitConverter.GetBytes(Convert.ToUInt32(val));
                         break;
-                    case 's':
+					case 's':
+						tmp = BitConverter.GetBytes (Convert.ToInt32 (char_len));
+						char_len = 0;
+						ret = ret.Concat(tmp).ToArray();
                         string str = Convert.ToString(val);
-                        if (str.Length != char_len)
-                        {
-                            Debug.Log("[Proto] pack is error str len is " + str.Length + " give len is " + char_len);
-                            return null;
-                        }
                         tmp = System.Text.Encoding.Default.GetBytes(str);
                         break;
                     case 'c':
@@ -102,10 +100,13 @@ public class Proto{
                         tmp = BitConverter.ToUInt32(bytes, start);
                         start += sizeof(UInt32);
                         break;
-                    case 's':
-                        tmp = System.Text.Encoding.Default.GetString(bytes, start, char_len);
-                        //Debug.Log("char tmp is "+tmp);
-                        start += char_len;
+					case 's':
+						BitConverter.ToInt32 (bytes, start);
+						start += sizeof(Int32);
+						tmp = System.Text.Encoding.Default.GetString (bytes, start, char_len);
+		                    //Debug.Log("char tmp is "+tmp);
+						start += char_len;
+						char_len = 0;
                         break;
                     case 'c':
                         tmp = BitConverter.ToChar(bytes, start);
@@ -127,7 +128,7 @@ public class Proto{
             }
             else
             {
-                Debug.Log("[Proto] pack error fmt is " + fmt);
+                Debug.Log("[Proto] unpack error fmt is " + fmt);
                 ind = start;
                 return null;
             }
@@ -135,5 +136,56 @@ public class Proto{
         ind = start;
         return ret;
     }
+		
+	public static uint calsize(string fmt){
+		int fmt_len = fmt.Length;
+		uint char_len = 0;
+		uint start = 0;
+		for (int i = 0; i < fmt_len; ++i){
+			char ele = fmt[i];
+			if (char.IsDigit(ele))
+			{
+				char_len = char_len * 10 + (uint)(ele - '0');
+				continue;
+			}
+			else if (char.IsLetter(ele))
+			{
+				switch (ele)
+				{
+				case 'h':
+					start += sizeof(Int16);
+					break;
+				case 'H':
+					start += sizeof(UInt16);
+					break;
+				case 'i':
+					start += sizeof(Int32);
+					break;
+				case 'I':
+					start += sizeof(UInt32);
+					break;
+				case 's':
+					//Debug.Log("char tmp is "+tmp);
+					start += char_len;
+					break;
+				case 'c':
+					start += sizeof(char);
+					break;
+				case 'd':
+					start += sizeof(double);
+					break;
+				case 'f':
+					start += sizeof(float);
+					break;
+				}
+			}
+			else
+			{
+				Debug.Log("[Proto] calsize error fmt is " + fmt);
+				return start;
+			}
+		}
+		return start;
+	}
     
 }

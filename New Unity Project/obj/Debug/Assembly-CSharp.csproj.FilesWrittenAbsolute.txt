@@ -1,0 +1,15 @@
+/Users/lijiayueee/Documents/learnNet/SimpleClient/New Unity Project/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/lijiayueee/Documents/learnNet/SimpleClient/New Unity Project/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/lijiayueee/Documents/learnNet/SimpleClient/New Unity Project/obj/Debug/Assembly-CSharp.dll
+/Users/lijiayueee/Documents/learnNet/SimpleClient/New Unity Project/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/lijiayueee/Documents/learnNet/SimpleClient/New Unity Project/Temp/bin/Debug/UnityEngine.dll
+/Users/lijiayueee/Documents/learnNet/SimpleClient/New Unity Project/Temp/bin/Debug/UnityEditor.dll
+/Users/lijiayueee/Documents/learnNet/SimpleClient/New Unity Project/Temp/bin/Debug/Mono.Cecil.dll
+/Users/lijiayueee/Documents/learnNet/SimpleClient/New Unity Project/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/lijiayueee/Documents/learnNet/SimpleClient/New Unity Project/Temp/bin/Debug/Unity.DataContract.dll
+/Users/lijiayueee/Documents/learnNet/SimpleClient/New Unity Project/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/lijiayueee/Documents/learnNet/SimpleClient/New Unity Project/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/lijiayueee/Documents/learnNet/SimpleClient/New Unity Project/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/lijiayueee/Documents/learnNet/SimpleClient/New Unity Project/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/lijiayueee/Documents/learnNet/SimpleClient/New Unity Project/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/lijiayueee/Documents/learnNet/SimpleClient/New Unity Project/Temp/bin/Debug/Mono.Cecil.Mdb.dll
