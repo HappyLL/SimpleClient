@@ -9,8 +9,10 @@ public class main : MonoBehaviour {
 	private ClientNet m_ct;
 	void Start () {
 		// 创立了连接
-		m_ct = new ClientNet ();
-		this.NetTick();
+        MSCSLoginHeader lg = new MSCSLoginHeader(101);
+        byte[] ret = Proto.encode_buffer(lg.Header_Encode());
+        m_ct = new ClientNet();
+        m_ct.SendMsg(ret);
     }
 		
 	// 游戏主循环
@@ -19,12 +21,13 @@ public class main : MonoBehaviour {
 	}
 
 	void NetTick(){
-		// 收数据
-		m_ct.RecvMsg ();
+        // 收数据
+        if (m_ct == null)
+            return;
 		m_ct.HandleMsg ();
-	}
+    }
 
 	void tick(){
-		
-	}
+        this.NetTick();
+    }
 }

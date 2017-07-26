@@ -188,4 +188,13 @@ public class Proto{
 		return start;
 	}
     
+    public static byte[] encode_buffer(byte[] buffer){
+        int buffer_len = buffer.Length;
+        Debug.Log("buffer_len is "+buffer_len);
+        ArrayList list = new ArrayList();
+        list.Add(buffer_len);
+        byte[] ret = pack("I", list);
+        return ret.Concat(buffer).ToArray();
+    }
+
 }
