@@ -48,8 +48,11 @@
   <ItemGroup>
      <Compile Include="Assets\main.cs" />
      <Compile Include="Assets\net\Header\Header.cs" />
+     <Compile Include="Assets\net\Header\HeaderConst.cs" />
      <Compile Include="Assets\net\Header\MLoginCSHeader.cs" />
      <Compile Include="Assets\net\NetDelegate\NetDelegate.cs" />
+     <Compile Include="Assets\net\Player\Player.cs" />
+     <Compile Include="Assets\net\Player\PlayerManager.cs" />
      <Compile Include="Assets\net\Proto.cs" />
      <Compile Include="Assets\net\Socket\ClientNet.cs" />
  <Reference Include="UnityEngine.UI">

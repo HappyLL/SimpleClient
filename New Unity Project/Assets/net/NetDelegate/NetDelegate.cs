@@ -25,10 +25,13 @@ public class NetDelegate{
 			m_dlisten [hid] += listen;
 	}
 
-	public void RemoveListener(ushort hid){
+	public void RemoveListener(ushort hid, net_listener listen=null){
 		if (m_dlisten.ContainsKey (hid) == false)
 			return;
-		m_dlisten.Remove (hid);
+        if (listen == null)
+            m_dlisten.Remove(hid);
+        else
+            m_dlisten[hid] -= listen;
 	}
 
 	public void DispatchEvent(ushort hid, byte[] bytes){

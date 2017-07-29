@@ -94,7 +94,7 @@ public class ClientNet{
 			return;
 		}
 		int content_len = check_ret;
-        Debug.Log("hehehe");
+        //Debug.Log("hehehe");
 		this.ParseHeader (content_len);
 	}
 
@@ -102,6 +102,7 @@ public class ClientNet{
         lock (locker){
             if (m_recvcount == 0)
                 return -1;
+            Debug.Log("check m_recvcount is "+m_recvcount);
             int ind = 0;
             ArrayList arrL = Proto.unpack("i", m_recvBytes, out ind);
             if (arrL == null || arrL.Count != 1)
@@ -130,12 +131,15 @@ public class ClientNet{
             {
                 return;
             }
+            //Debug.Log("hLen is " + hLen);
             int hid = (ushort)arrL[1];
             byte[] tmpBytes = new byte[hLen];
             ind = ind - (int)Proto.calsize("H");
             Array.Copy(m_recvBytes, ind, tmpBytes, 0, hLen);
-            m_recvcount -= hLen;
-            Array.Copy(m_recvBytes, hLen, m_recvBytes, 0, m_recvcount);
+            int tot_len = hLen + (int)Proto.calsize("i");
+            m_recvcount -= tot_len;
+            Debug.Log("parser m_recvcount is " + m_recvcount);
+            Array.Copy(m_recvBytes, tot_len, m_recvBytes, 0, m_recvcount);
             //发送数据
             NetDelegate.GetIns().DispatchEvent((ushort)hid, tmpBytes);
         }

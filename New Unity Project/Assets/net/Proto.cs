@@ -53,7 +53,7 @@ public class Proto{
                         tmp = BitConverter.GetBytes(Convert.ToDouble(val));
                         break;
                     case 'f':
-                        tmp = BitConverter.GetBytes(Convert.ToDouble(val));
+                        tmp = BitConverter.GetBytes(Convert.ToSingle(val));
                         break;
                 }
                 ret = ret.Concat(tmp).ToArray();

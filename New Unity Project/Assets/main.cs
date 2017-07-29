@@ -7,12 +7,11 @@ public class main : MonoBehaviour {
 
 	// Use this for initializatin
 	private ClientNet m_ct;
+    private PlayerManager m_player;
 	void Start () {
-		// 创立了连接
-        MSCSLoginHeader lg = new MSCSLoginHeader(101);
-        byte[] ret = Proto.encode_buffer(lg.Header_Encode());
+        // 创立了连接
         m_ct = new ClientNet();
-        m_ct.SendMsg(ret);
+        m_player = new PlayerManager();
     }
 		
 	// 游戏主循环
