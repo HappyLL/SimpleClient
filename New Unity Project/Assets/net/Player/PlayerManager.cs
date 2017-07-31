@@ -21,6 +21,7 @@ public class PlayerManager{
     }
 
     private void create_new_player(byte[] bytes){
+        Debug.Log("create_new_player");
         MSCSLoginHeader login = new MSCSLoginHeader(HeaderConst.HEADER_LOGIN_MSG_ID);
         login.Header_Decode(bytes);
         Debug.Log(login.GetVal("player_id"));

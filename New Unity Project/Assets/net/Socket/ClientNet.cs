@@ -75,10 +75,19 @@ public class ClientNet{
             int cnt = m_socket.EndReceive(ret);
            // Debug.Log("recvcnt is " + cnt);
             byte[] copyBytes = new byte[cnt];
+            for (int index = 0; index < cnt; ++index)
+            {
+                Debug.Log(m_tmpBytes[index]);
+            }
             Array.Copy(m_tmpBytes, 0, copyBytes, 0, cnt);
             m_recvcount += cnt;
             Debug.Log("recvcnt is " + m_recvcount);
             m_recvBytes = m_recvBytes.Concat(copyBytes).ToArray();
+            //Debug.Log("rec");
+            for (int index = 0; index < m_recvBytes.Length; ++index)
+            {
+               Debug.Log(m_recvBytes[index]);
+            }
             m_tmpBytes = new byte[BUFF_SIZE];
             m_socket.BeginReceive(m_tmpBytes, 0, m_tmpBytes.Length, SocketFlags.None, new AsyncCallback(this.ReceiveCallBack), m_socket);
         }
@@ -89,7 +98,8 @@ public class ClientNet{
 			return;
 		}
 		int check_ret = this._CheckPackageLen ();
-		if (check_ret == -1) {
+        //Debug.Log("handle_msg is " + check_ret);
+        if (check_ret == -1) {
 			//Debug.Log ("[ClientNet][HandleMsg] check ret is -1");
 			return;
 		}
@@ -102,7 +112,7 @@ public class ClientNet{
         lock (locker){
             if (m_recvcount == 0)
                 return -1;
-            Debug.Log("check m_recvcount is "+m_recvcount);
+            //Debug.Log("check m_recvcount is "+m_recvcount);
             int ind = 0;
             ArrayList arrL = Proto.unpack("i", m_recvBytes, out ind);
             if (arrL == null || arrL.Count != 1)

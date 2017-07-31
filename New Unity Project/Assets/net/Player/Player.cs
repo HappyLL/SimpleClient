@@ -8,13 +8,12 @@ public class Player : MonoBehaviour {
     private int m_player_id;
     private float m_x;
     private float m_y;
-    public GameObject m_text;
     public Text m_tt;
 	// Use this for initialization
 	void Start () {
-        m_text = GameObject.Find("Text");
-        m_tt = m_text.GetComponent<Text>();
-        m_tt.text = m_player_id.ToString();
+        m_tt = gameObject.GetComponentInChildren<Text>();
+        m_tt.text = "Player_id: "+ m_player_id.ToString();
+       //# Debug.Log("yesyeyeyeyeyeye"+m_player_id);
     }
 	
 	// Update is called once per frame
