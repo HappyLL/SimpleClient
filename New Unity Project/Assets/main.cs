@@ -6,8 +6,8 @@ using System;
 public class main : MonoBehaviour {
 
 	// Use this for initializatin
-	private ClientNet m_ct;
-    private PlayerManager m_player;
+	private ClientNet m_ct = null;
+    private PlayerManager m_player = null;
 	void Start () {
         // 创立了连接
         m_ct = new ClientNet();

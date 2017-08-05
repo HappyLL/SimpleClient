@@ -50,6 +50,9 @@
      <Compile Include="Assets\net\Header\Header.cs" />
      <Compile Include="Assets\net\Header\HeaderConst.cs" />
      <Compile Include="Assets\net\Header\MLoginCSHeader.cs" />
+     <Compile Include="Assets\net\Header\MPosCSHeader.cs" />
+     <Compile Include="Assets\net\InputMgr\InputLogic.cs" />
+     <Compile Include="Assets\net\InputMgr\InputManager.cs" />
      <Compile Include="Assets\net\NetDelegate\NetDelegate.cs" />
      <Compile Include="Assets\net\Player\Player.cs" />
      <Compile Include="Assets\net\Player\PlayerManager.cs" />

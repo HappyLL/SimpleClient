@@ -6,9 +6,11 @@ public class PlayerManager{
 
     private List<GameObject> m_players = null;
     public static string path = "Prefabs/PlayerPrefab";
+    private Player m_owner;
 
     public PlayerManager(){
         m_players = new List<GameObject>();
+        m_owner = null;
         this.register_msg();
     }
 
@@ -21,16 +23,20 @@ public class PlayerManager{
     }
 
     private void create_new_player(byte[] bytes){
-        Debug.Log("create_new_player");
+        //Debug.Log("create_new_player");
         MSCSLoginHeader login = new MSCSLoginHeader(HeaderConst.HEADER_LOGIN_MSG_ID);
         login.Header_Decode(bytes);
-        Debug.Log(login.GetVal("player_id"));
-        Debug.Log(login.GetVal("pos_x"));
-        Debug.Log(login.GetVal("pos_y"));
+        //Debug.Log(login.GetVal("player_id"));
+        //Debug.Log(login.GetVal("pos_x"));
+        //Debug.Log(login.GetVal("pos_y"));
         Object cubePreb = Resources.Load(path, typeof(GameObject));
         var gm_obj = GameObject.Instantiate(cubePreb) as GameObject;
         m_players.Add(gm_obj);
         Player comm = gm_obj.GetComponent<Player>();
-        comm.set_proto_info(login);
+        comm.set_proto_info(login, m_owner == null);
+        if (m_owner == null)
+        {
+            m_owner = comm;
+        }
     }
 }

@@ -73,21 +73,13 @@ public class ClientNet{
     public void ReceiveCallBack(IAsyncResult ret) {
         lock (locker){
             int cnt = m_socket.EndReceive(ret);
-           // Debug.Log("recvcnt is " + cnt);
+            Debug.Log("before recvcnt is " + m_recvBytes.Length);
             byte[] copyBytes = new byte[cnt];
-            for (int index = 0; index < cnt; ++index)
-            {
-                Debug.Log(m_tmpBytes[index]);
-            }
             Array.Copy(m_tmpBytes, 0, copyBytes, 0, cnt);
             m_recvcount += cnt;
-            Debug.Log("recvcnt is " + m_recvcount);
             m_recvBytes = m_recvBytes.Concat(copyBytes).ToArray();
             //Debug.Log("rec");
-            for (int index = 0; index < m_recvBytes.Length; ++index)
-            {
-               Debug.Log(m_recvBytes[index]);
-            }
+            Debug.Log("after recvcnt is " + m_recvBytes.Length);
             m_tmpBytes = new byte[BUFF_SIZE];
             m_socket.BeginReceive(m_tmpBytes, 0, m_tmpBytes.Length, SocketFlags.None, new AsyncCallback(this.ReceiveCallBack), m_socket);
         }
@@ -148,8 +140,9 @@ public class ClientNet{
             Array.Copy(m_recvBytes, ind, tmpBytes, 0, hLen);
             int tot_len = hLen + (int)Proto.calsize("i");
             m_recvcount -= tot_len;
-            Debug.Log("parser m_recvcount is " + m_recvcount);
-            Array.Copy(m_recvBytes, tot_len, m_recvBytes, 0, m_recvcount);
+            byte[] tmp = new byte[m_recvcount];
+            Array.Copy(m_recvBytes, tot_len, tmp, 0, m_recvcount);
+            m_recvBytes = tmp;
             //发送数据
             NetDelegate.GetIns().DispatchEvent((ushort)hid, tmpBytes);
         }
