@@ -6,12 +6,10 @@ using System;
 public class main : MonoBehaviour {
 
 	// Use this for initializatin
-	private ClientNet m_ct = null;
-    private PlayerManager m_player = null;
+
 	void Start () {
         // 创立了连接
-        m_ct = new ClientNet();
-        m_player = new PlayerManager();
+        GameMgr.get_instance();
     }
 		
 	// 游戏主循环
@@ -19,14 +17,11 @@ public class main : MonoBehaviour {
 		this.tick ();
 	}
 
-	void NetTick(){
-        // 收数据
-        if (m_ct == null)
-            return;
-		m_ct.HandleMsg ();
+    void OnDestroy(){
+        GameMgr.get_instance().uinit();
     }
 
 	void tick(){
-        this.NetTick();
+        GameMgr.get_instance().tick();
     }
 }

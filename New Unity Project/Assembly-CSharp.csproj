@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\main.cs" />
+     <Compile Include="Assets\net\GameMgr.cs" />
      <Compile Include="Assets\net\Header\Header.cs" />
      <Compile Include="Assets\net\Header\HeaderConst.cs" />
      <Compile Include="Assets\net\Header\MLoginCSHeader.cs" />
@@ -58,6 +59,7 @@
      <Compile Include="Assets\net\Player\PlayerManager.cs" />
      <Compile Include="Assets\net\Proto.cs" />
      <Compile Include="Assets\net\Socket\ClientNet.cs" />
+     <Compile Include="Assets\net\Sync\SyncManager.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

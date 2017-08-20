@@ -47,9 +47,11 @@ public class ClientNet{
 
 	private void _sendMsg(){
 		int cnt = m_socket.Send (m_sendBytes);
-        Debug.Log(cnt);
 		m_sendcount -= cnt;
-		Array.Copy (m_sendBytes, cnt, m_sendBytes, 0, m_sendcount);
+        byte[] tmp_bytes = new byte[m_sendcount];
+        Debug.Log("cnt is " + cnt + " tot cnt is " + m_sendcount);
+        Array.Copy (m_sendBytes, cnt, tmp_bytes, 0, m_sendcount);
+        m_sendBytes = tmp_bytes;
         if (m_sendcount > 0)
 			_sendMsg ();
 	}
@@ -144,6 +146,7 @@ public class ClientNet{
             Array.Copy(m_recvBytes, tot_len, tmp, 0, m_recvcount);
             m_recvBytes = tmp;
             //发送数据
+            Debug.Log("pass hid is "+hid);
             NetDelegate.GetIns().DispatchEvent((ushort)hid, tmpBytes);
         }
 	}

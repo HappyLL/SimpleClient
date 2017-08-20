@@ -28,18 +28,22 @@ public class InputLogic : MonoBehaviour {
 
     public void up(){
         Debug.Log("up");
+        GameMgr.get_instance().get_input_mgr().push_input_logic("up");
     }
 
     public void down(){
         Debug.Log("down");
+        GameMgr.get_instance().get_input_mgr().push_input_logic("down");
     }
 
     public void left(){
         Debug.Log("left");
+        GameMgr.get_instance().get_input_mgr().push_input_logic("left");
     }
 
     public void right(){
         Debug.Log("right");
+        GameMgr.get_instance().get_input_mgr().push_input_logic("right");
     }
 
 }
